@@ -1,36 +1,26 @@
-class ToDoList {
-    constructor(title, text){
-        this.title = title
-        this.list = text
-        this.createToDoList()
+import modalContent from "./modalContent.js"
+import ModalWindow from "./ModalWindow.js"
+import ToDoList from "./TooDoList.js"
+
+document.addEventListener('click', (e) => {
+    //A modal window for creating a new To-Do List
+    if (e.target.getAttribute('id') == 'addNewList') {
+        new ModalWindow(`Let's create a new To-Do List:`, modalContent.modalNewListInput, modalContent.modalNewListButtons)
+        
+    } 
+    //new To-Do List
+    else if (e.target.getAttribute('id') == 'createNewToDo') {
+        let inputNewTitleList = document.getElementById('inputNewTitleList').value
+        let inputNewTask = document.getElementById('inputNewTask').value
+
+        new ToDoList(inputNewTitleList, inputNewTask)
+
     }
-
-    createToDoList(title, list) {
-        const getTag = document.getElementsByClassName('notion')[0]
-        getTag.insertAdjacentHTML('beforeend',
-            `
-                <div class="notion__item">
-                    <ul>
-                        <li class="title">${this.title}</li>
-                        <li>${this.list}<a href="#" class="close">❌</a></li>
-                        <li class="listMenu">
-                            <button class="yellowButton">Add</button>
-                            <button class="yellowButton">Remove all</button>
-                        </li>
-                    </ul>
-                </div>    
-            `
-        )
-    }
-
-}
-
-const addNewList = document.getElementById('addNewList')
-
-addNewList.addEventListener('click', (e) => {
-    const someList = new ToDoList('Some shit', 'Hello world')
-    console.log(someList);
 })
+
+
+
+
 
 // function createToDoList(title, list) {
 //     const headerTag = document.getElementsByClassName('notion')[0]
