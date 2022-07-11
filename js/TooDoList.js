@@ -1,28 +1,30 @@
 class ToDoList {
-    constructor(title, text){
+    constructor(title){
         this.title = title
-        this.list = text
-        this.createToDoList()
     }
 
-    createToDoList(title, list) {
+    createToDoList() {
         const getTag = document.getElementsByClassName('notion')[0]
         getTag.insertAdjacentHTML('beforeend',
             `
-                <div class="notion__item">
-                    <ul>
-                        <li class="title">${this.title}</li>
-                        <li>${this.list}<a href="#" class="close">&#10006</a></li>
-                        <li class="listMenu">
-                            <button class="yellowButton">Add</button>
-                            <button class="yellowButton">Remove all</button>
-                        </li>
-                    </ul>
-                </div>    
+            <div class="notion__item">
+                <ul>
+                    <li class="title">${this.title}</li>
+                    <li class="listMenu">
+                        <button class="yellowButton Add">Add</button>
+                        <button class="yellowButton">Delete marked</button>
+                        <button class="yellowButton">Clear</button>
+                        <button class="yellowButton">Remove list</button>
+                    </li>
+                </ul>
+            </div>   
             `
         )
     }
 
+    removeTask() {
+        
+    }
 }
 
 export default ToDoList

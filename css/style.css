@@ -101,7 +101,7 @@ ul li {
     box-shadow: -10px 2px 5px rgba(128, 128, 128, 0.49);
     border-radius: 5px;
     border: 0.5px solid rgb(161, 158, 158);
-    font-size: 14px;
+    font-size: 16px;
 }
 
 ul li:hover {
@@ -123,12 +123,16 @@ ul li:hover {
     background-color: #ddf815c4;
 }
 
+.check {
+    color: black;
+}
+
 .close {
     visibility: hidden;
     color: red;
 }
 
-li:hover :first-child {
+li:hover :nth-child(3n) {
     visibility: visible;
 }
 
