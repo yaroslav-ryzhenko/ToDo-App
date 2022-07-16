@@ -10,8 +10,7 @@ document.addEventListener('click', (e) => {
     } 
     //new To-Do List
     else if (e.target.getAttribute('id') == 'createNewToDo') {
-        let inputNewTitleList = document.getElementById('inputNewTitleList').value
-
+        let inputNewTitleList = document.getElementsByClassName('inputNewTitleList')[0].value
         const newToDo = new ToDoList(inputNewTitleList)
         newToDo.createToDoList()
         //closing modal window after pressing "OK"
@@ -40,4 +39,19 @@ document.addEventListener('click', (e) => {
     else if (e.target.getAttribute('class') == 'close') {
         e.target.parentElement.remove()
     }  
+
+    //edit task
+    else if (e.target.getAttribute('class') == 'taskText') {
+        let changeTextBlock = e.target
+        let modalChangeTaskText = new ModalWindow('Change task:', blocks.changeTaskText, blocks.changedTextTaskButtons)
+        modalChangeTaskText.create()
+        let taskInnerText = document.getElementsByClassName('inputNewTitleList')[0]
+        taskInnerText.value = changeTextBlock.innerText
+        let changeTextBtn = document.getElementById('changedTextTask')
+        changeTextBtn.onclick = () => {
+            changeTextBlock.innerText = taskInnerText.value
+            //closing modal window after pressing "OK"
+            ModalWindow.removeModal()
+        }
+    }
 })

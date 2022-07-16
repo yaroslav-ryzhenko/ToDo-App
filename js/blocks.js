@@ -2,7 +2,7 @@ const blocks = {
     //HTML blocks for creating modal windows
     modalNewListInput: `
     <div class="modal__input">
-        <p><input id="inputNewTitleList" type="text" placeholder="Title"></p>
+        <p><input class="inputNewTitleList" type="text" placeholder="Title" value="Title without name"></p>
     `
     ,
     modalNewListButtons: `
@@ -11,9 +11,16 @@ const blocks = {
     newTask: `
     <li>
         <a href="#" class="check">⚪</a>
-        <span class="taskText">I have a bike</span>
+        <span class="taskText">New Task</span>
         <a href="#" class="close">⛔</a>
     </li>
+    `,
+    changeTaskText:`
+    <div class="modal__input">
+        <p><input class="inputNewTitleList" type="text" placeholder="Your text"></p>
+    `,
+    changedTextTaskButtons: `
+    <p><button class="yellowButton" id ="changedTextTask">OK</button><button class="yellowButton" id="removeNewListModal">Cancel</button></p>
     `
 }
 
