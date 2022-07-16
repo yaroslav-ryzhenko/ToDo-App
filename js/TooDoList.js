@@ -11,7 +11,7 @@ class ToDoList {
                 <ul>
                     <li class="title">${this.title}</li>
                     <li class="listMenu">
-                        <button class="yellowButton Add">Add</button>
+                        <button class="yellowButton Add">Add task</button>
                         <button class="yellowButton">Delete marked</button>
                         <button class="yellowButton">Clear</button>
                         <button class="yellowButton">Remove list</button>
