@@ -10,7 +10,7 @@ document.addEventListener('click', (e) => {
     } 
     //new To-Do List
     else if (e.target.getAttribute('id') == 'createNewToDo') {
-        let inputNewTitleList = document.getElementsByClassName('inputNewTitleList')[0].value
+        const inputNewTitleList = document.getElementsByClassName('inputNewTitleList')[0].value
         const newToDo = new ToDoList(inputNewTitleList)
         newToDo.createToDoList()
         //closing modal window after pressing "OK"
@@ -20,7 +20,7 @@ document.addEventListener('click', (e) => {
     else if (e.target.getAttribute('id') == 'removeNewListModal' || e.target.getAttribute('class') == 'modal' ) {
         ModalWindow.removeModal()
     }
-    //To-Do List manipulation
+    //TO-DO LIST MANIPULATION
     //check validator
     else if (e.target.getAttribute('class') == 'check') {
         if (e.target.innerText == '⚪') {
@@ -31,27 +31,48 @@ document.addEventListener('click', (e) => {
             e.target.nextSibling.nextSibling.style.textDecoration = 'none'
         } 
     }
-    //add task
-    else if (e.target.getAttribute('class') == 'yellowButton Add') {
-        e.target.parentElement.insertAdjacentHTML('beforebegin', blocks.newTask) 
-    }  
-    //remove task
-    else if (e.target.getAttribute('class') == 'close') {
-        e.target.parentElement.remove()
-    }  
-
-    //edit task
-    else if (e.target.getAttribute('class') == 'taskText') {
-        let changeTextBlock = e.target
-        let modalChangeTaskText = new ModalWindow('Change task:', blocks.changeTaskText, blocks.changedTextTaskButtons)
+    //edit title and task
+    else if (e.target.getAttribute('class') == 'taskText' || e.target.getAttribute('class') == 'title') {
+        let modalChangeTaskText = new ModalWindow('Change name:', blocks.changeTaskText, blocks.changedTextTaskButtons)
         modalChangeTaskText.create()
-        let taskInnerText = document.getElementsByClassName('inputNewTitleList')[0]
-        taskInnerText.value = changeTextBlock.innerText
-        let changeTextBtn = document.getElementById('changedTextTask')
+
+        const taskInnerText = document.getElementsByClassName('inputNewTitleList')[0]
+        const target = e.target
+        const changeTextBtn = document.getElementById('changedTextTask')
+
+        taskInnerText.value = target.innerText
+        
         changeTextBtn.onclick = () => {
-            changeTextBlock.innerText = taskInnerText.value
+            target.innerText = taskInnerText.value
             //closing modal window after pressing "OK"
             ModalWindow.removeModal()
         }
+    }
+    //remove task
+    else if (e.target.getAttribute('class') == 'close') {
+        e.target.parentElement.remove()
+    } 
+    //BUTTONS LOGIC
+    else if (e.target.getAttribute('class') == 'yellowButton') {
+        const target = e.target
+
+        switch (target.innerText) {
+            case 'Add task':
+                target.parentElement.parentElement.previousElementSibling.insertAdjacentHTML('afterBegin', blocks.newTask)
+                break
+            
+            case 'Delete marked':
+                const taskList = target.parentElement.parentElement.previousElementSibling.querySelectorAll('li > a.check')
+                taskList.forEach((element) => {
+                    if (element.innerText == '⚫') {
+                        element.parentElement.remove()
+                    }
+                })
+                break
+
+            case 'Remove list':
+                target.parentElement.parentElement.parentElement.remove()
+                break
+        } 
     }
 })

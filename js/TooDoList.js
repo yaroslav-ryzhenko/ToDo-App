@@ -10,10 +10,13 @@ class ToDoList {
             <div class="notion__item">
                 <ul>
                     <li class="title">${this.title}</li>
+                </ul>
+                <ul>
+                </ul>
+                <ul>
                     <li class="listMenu">
-                        <button class="yellowButton Add">Add task</button>
+                        <button class="yellowButton">Add task</button>
                         <button class="yellowButton">Delete marked</button>
-                        <button class="yellowButton">Clear</button>
                         <button class="yellowButton">Remove list</button>
                     </li>
                 </ul>
